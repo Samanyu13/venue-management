@@ -1,0 +1,67 @@
+/* adam_4.css */
+
+#cain
+{
+    display : grid;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 70vw;
+    
+}
+
+.square_1
+{
+    display:grid;
+    grid-column:1/2;
+    /* grid-row:1/2; */
+    background-color: rgb(47, 114, 92);
+
+    grid-template-rows: 3fr 4fr;
+}
+
+.square_1_1
+{
+    display: grid;
+    grid-row:1/2;
+    background-color: rgb(47, 114, 92);
+}
+
+.square_1_2
+{
+    display: grid;
+    grid-row:2/3;
+    background-color: rgb(47, 114, 92);
+}
+
+.square_2
+{
+    display: grid;
+    grid-column:2/3;
+    background-color: rgb(100, 157, 138);
+    grid-template-rows: 1fr 1fr;
+
+}
+
+.square_2_1
+{
+    display: grid;
+    grid-row:1/2;
+    background-color: rgb(78, 164, 141);
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-columns: 1fr 8fr 1fr;
+
+}
+
+.square_2_1_calendar
+{
+    grid-column:2/3;
+    grid-row:2/3;
+    background-color: rgb(67, 107, 142)
+}
+
+.square_2_2
+{
+    display:grid;
+    grid-row:2/3;
+    background-color: rgb(50, 135, 135)
+
+}
