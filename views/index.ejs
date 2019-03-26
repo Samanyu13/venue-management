@@ -12,12 +12,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <!-- <link href= "./fullcalendar-4.0.1/packages/core/main.css" rel= "stylesheet"/>
+    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet' />  
+
+    <link href= "./fullcalendar-4.0.1/packages/core/main.css" rel= "stylesheet"/>
     <link href= "./fullcalendar-4.0.1/packages/daygrid/main.css" rel= "stylesheet"/>
-    <link href= "./fullcalendar-4.0.1/packages/daygrid/main.min.css" rel= "stylesheet"/>
-    <link href= "./fullcalendar-4.0.1/packages/core/main.min.css" rel= "stylesheet"/>
-    <script src="./fullcalendar-4.0.1/packages/core/main.js" crossorigin="anonymous"></script>
-    <script src="./fullcalendar-4.0.1/packages/daygrid/main.js"></script> -->
 
 </head>
 
@@ -53,23 +52,27 @@
     </div>
     </body>
 
-    <script type="module">
-import  Calendar from './fullcalendar-4.0.1/packages/core/main.js';
-import DayGrid from './fullcalendar-4.0.1/packages/daygrid/main.js';
-// import '@fullcalendar/core/main.css';
-// import '@fullcalendar/daygrid/main.css';
-// import '@fullcalendar/timegrid/main.css';
-// import '@fullcalendar/list/main.css';
+    <script src="./fullcalendar-4.0.1/packages/core/main.js"></script>
+    <script src="./fullcalendar-4.0.1/packages/daygrid/main.js"></script>
+
+    <script >
+// import  Calendar from './fullcalendar-4.0.1/packages/core/main.js';
+// import DayGrid from './fullcalendar-4.0.1/packages/daygrid/main.js';
+// import './fullcalendar-4.0.1/packages/core/main.css';
+// import './fullcalendar-4.0.1/packages/daygrid/main.css';
+// import './fullcalendar-4.0.1/packages/timegrid/main.css';
+// import './fullcalendar-4.0.1/packages/list/main.css';
 
 document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
+        var calendarEl = document.getElementById('calendar');
 
-  var calendar = new Calendar(calendarEl, {
-    plugins: [ dayGridPlugin ]
-  });
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid' ]
+        });
 
-  calendar.render();
-});
+        calendar.render();
+      });
+
     </script>
 
 </html>
