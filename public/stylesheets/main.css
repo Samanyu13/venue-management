@@ -91,7 +91,7 @@ li a:hover {
 
 #calendar {
     grid-column: 2/3;
-    background-color: #8187ff;
+    /* background-color: #8187ff; */
     padding: 2rem;
     grid-gap: 5rem; 
     display: grid;

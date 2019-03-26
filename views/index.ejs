@@ -11,55 +11,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <!-- <script src="main.js"></script> -->
+
+    <!-- <link href= "./fullcalendar-4.0.1/packages/core/main.css" rel= "stylesheet"/>
+    <link href= "./fullcalendar-4.0.1/packages/daygrid/main.css" rel= "stylesheet"/>
+    <link href= "./fullcalendar-4.0.1/packages/daygrid/main.min.css" rel= "stylesheet"/>
+    <link href= "./fullcalendar-4.0.1/packages/core/main.min.css" rel= "stylesheet"/>
+    <script src="./fullcalendar-4.0.1/packages/core/main.js" crossorigin="anonymous"></script>
+    <script src="./fullcalendar-4.0.1/packages/daygrid/main.js"></script> -->
+
 </head>
 
 
 <body>
-    <!-- <div>
-
-        <div class="sidebar">
-        </div>
-
-        <div class="top_bar">
-            <h1 style="font-size:3vw; color:rgb(198, 198, 221); font-family:serif; text-align:center;">CET VENUE MANAGEMENT</h1>
-        </div>
-
-        <div class="square_1">
-            <div class="square_1_1"> 
-                <h2 style="font-size:2.4vw; color:rgb(198, 198, 221); font-family:serif; text-align:center;">DJ HALL</h2>                
-            </div>
-        </div>
-
-        <div class = "square_2">
-            <div class= "square_2_1">
-                <h3 style="font-size:2.4vw; color:rgb(189, 189, 230); font-family:serif; text-align:center;" >CETAAH</h3> 
-            </div>
-        </div>
-        
-        <div class = "square_3">
-            <div class= "square_3_1">
-                
-            </div>
-        </div>
-
-        <div class = "square_4">
-            <div class= "square_4_1">
-                <h4 style="font-size:2.4vw; color:rgb(189, 189, 230); font-family:serif; text-align:center;" >CGPU</h4>
-            </div>
-        </div>
-        
-        <div class = "square_5">
-            <div class= "square_5_1">
-                <h5 style="font-size:2.4vw; color:rgb(189, 189, 230); font-family:serif; text-align:center;" >V4</h5>
-            </div>
-        </div>
-        
-        <div class = "square_6"></div>
-        <div class = "square_7"></div>
-        <div class = "square_8"></div>
-        <div class = "square_9"></div>
-     -->
     
     <div id= "head">
 <ul>
@@ -89,4 +52,24 @@
         </div>
     </div>
     </body>
+
+    <script type="module">
+import  Calendar from './fullcalendar-4.0.1/packages/core/main.js';
+import DayGrid from './fullcalendar-4.0.1/packages/daygrid/main.js';
+// import '@fullcalendar/core/main.css';
+// import '@fullcalendar/daygrid/main.css';
+// import '@fullcalendar/timegrid/main.css';
+// import '@fullcalendar/list/main.css';
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new Calendar(calendarEl, {
+    plugins: [ dayGridPlugin ]
+  });
+
+  calendar.render();
+});
+    </script>
+
 </html>
