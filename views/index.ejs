@@ -17,6 +17,9 @@
 
     <link href= "./fullcalendar-4.0.1/packages/core/main.css" rel= "stylesheet"/>
     <link href= "./fullcalendar-4.0.1/packages/daygrid/main.css" rel= "stylesheet"/>
+    <link href= "./fullcalendar-4.0.1/packages/bootstrap/main.css" rel= "stylesheet"/>
+    <script src=""></script>
+
 
 </head>
 
@@ -54,20 +57,14 @@
 
     <script src="./fullcalendar-4.0.1/packages/core/main.js"></script>
     <script src="./fullcalendar-4.0.1/packages/daygrid/main.js"></script>
-
+    <script src="./fullcalendar-4.0.1/packages/bootstrap/main.js"></script>
     <script >
-// import  Calendar from './fullcalendar-4.0.1/packages/core/main.js';
-// import DayGrid from './fullcalendar-4.0.1/packages/daygrid/main.js';
-// import './fullcalendar-4.0.1/packages/core/main.css';
-// import './fullcalendar-4.0.1/packages/daygrid/main.css';
-// import './fullcalendar-4.0.1/packages/timegrid/main.css';
-// import './fullcalendar-4.0.1/packages/list/main.css';
-
 document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid' ]
+          plugins: [ 'dayGrid', 'bootstrap' ],
+          themeSystem: 'bootstrap'
         });
 
         calendar.render();

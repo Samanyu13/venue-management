@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const Users = sequelize
+    const Event = sequelize
       .define('event', {
         event_id: {
           type: DataTypes.INTEGER(),
@@ -41,5 +41,5 @@ module.exports = function (sequelize, DataTypes) {
         // https://github.com/sequelize/sequelize/issues/8148
       });
   
-    return Library;
+    return Event;
   };

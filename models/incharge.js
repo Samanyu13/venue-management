@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
         // https://github.com/sequelize/sequelize/issues/8148
       });
   
-    Users.associate = function (models) {
+    Incharge.associate = function (models) {
       models.users
         .belongsTo(models.faculty, {
           onDelete: 'CASCADE',
@@ -27,5 +27,5 @@ module.exports = function (sequelize, DataTypes) {
         });
     };
   
-    return Users;
+    return Incharge;
   };

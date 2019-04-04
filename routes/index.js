@@ -11,4 +11,10 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
 
+router.get('/venue', function(req, res, next) {
+  res.render('venue', { title: 'Express' });
+});
+
+router.use('/authentication', require('./authentication'));
+
 module.exports = router;

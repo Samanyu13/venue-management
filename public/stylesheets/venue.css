@@ -1,0 +1,26 @@
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 11fr 9fr;
+}
+
+#venue {
+    grid-column: 1/2;
+    /* background-color: darkblue;  */
+}
+
+#cal_details {
+    grid-column: 2/3;
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+}
+
+#calendar {
+    grid-row: 1/2;
+    /* background-color: darkcyan; */
+}
+
+#details {
+    grid-row: 2/3;
+    /* background-color: black; */
+}
