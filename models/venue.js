@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
   
     Venue.associate = function (models) {
       models.venue
-        .belongsTo(models.incharge, {
+        .belongsTo(models.users, {
           onDelete: 'CASCADE',
           foreignKey: {
             name: 'incharge_id',

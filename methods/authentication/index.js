@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const models = require("../../models");
-const methods = require("../../methods/authentication");
 const Promise = require("bluebird");
 const { sequelize } = require("../../models");
 const key = require("../../config/api.json").API_SECRET;
@@ -14,31 +13,18 @@ Authentication.addIncharge = function(info) {
     bcrypt.hash(info.password, saltRounds, function(err, hash) {
       return sequelize
         .transaction(function(t) {
+
           var people = {};
           people.username = info.username;
-          people.name = info.name;
-          people.email = info.email;
-          people.phone_no = info.phone_no;
-          people.department = info.department;
+          people.faculty_id = info.faculty_id;
+          people.privilege = info.privilege;
+          people.password = hash;
 
-          return models.employees
+          return models.users
             .create(people, { transaction: t })
             .then(function(peeps) {
-              var login_credentials = {};
-              login_credentials.employee_code = info.employee_code;
-              login_credentials.password = hash;
-              return models.employee_credentials
-                .create(login_credentials, {
-                  transaction: t
-                })
-                .then(function(result) {
-                  console.log(result);
-                  resolve({ success: true });
-                })
-                .catch(function(err) {
-                  console.log(err);
-                  reject({ success: false });
-                });
+              console.log(peeps);
+              resolve({ success: true });
             })
             .catch(function(err) {
               console.log(err);
@@ -59,10 +45,10 @@ Authentication.addIncharge = function(info) {
 
 Authentication.authenticateIncharge = function(info) {
   return new Promise(function(resolve, reject) {
-    models.employee_credentials
+    models.users
       .findOne({
         where: {
-          employee_code: info.employee_code
+          username: info.username
         }
       })
       .then(result => {
@@ -70,23 +56,23 @@ Authentication.authenticateIncharge = function(info) {
           bcrypt.compare(info.password, result.password, function(err, res) {
             if (res === true) {
               console.log("correct password-bcrypt");
-              models.employees
+              models.faculty
                 .findOne({
                   where: {
-                    employee_code: result.employee_code
+                    faculty_id: result.faculty_id
                   }
                 })
                 .then(success => {
                   const token = jwt.sign(
                     {
-                      employee_code: result.employee_code,
+                      faculty_id: result.faculty_id,
                       username: success.username
                     },
                     key,
-                    { expiresIn: "1h" }
+                    { expiresIn: "4h" }
                   );
-                  const employee_code = result.employee_code;
-                  console.log(employee_code);
+                  const faculty_id = result.faculty_id;
+                  console.log(faculty_id);
 
                   resolve({
                     success: true,
@@ -97,9 +83,9 @@ Authentication.authenticateIncharge = function(info) {
                   console.log(err);
                   reject({ error: err });
                 });
-            } else {
+            } 
+            else {
               console.log("wrong password-bcrypt");
-
               reject({ success: false, token: null });
             }
           });

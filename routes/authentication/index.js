@@ -2,45 +2,28 @@ const express = require("express");
 const router = express.Router();
 const methods = require("../../methods");
 
+router.get('/login', function(req, res, next) {
+  res.render('authentication/login', { title: 'Express' });
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('authentication/register', { title: 'Express' });
+});
+
 router.post("/register", function(req, res) {
-
-  var password = Math.random().toString(36).substr(2, 8);  
-  console.log(password);
   let tosend = {};
-  let tomail = {};
   tosend.username = req.body.username;
-  tosend.employee_code = req.body.employee_code;
-  tosend.email = req.body.email;
-  tosend.mobile_no = req.body.mobile_no;
-  tosend.address = req.body.address;
-  tosend.city = req.body.city;
-  tosend.state = req.body.state;
-  tosend.pin = req.body.pin;
-  tosend.password = password;
+  tosend.faculty_id = req.body.faculty_id;
+  tosend.password = req.body.password;
+  tosend.privilege = req.body.privilege;
 
-  tomail.username = req.body.username;
-  tomail.email = req.body.email;
-  tomail.password = password;
-
-  methods.Authentication.addEmployee(tosend)
+  methods.Authentication.addIncharge(tosend)
     .then(function(result) {
       console.log("Registration started result:"+result);
-      if (result.success === true) {
-        methods.EmailConfirmation.Send(tomail)
-          .then((val) => {
-            console.log("sasibalh"+val);
-            res.json({
-              success: true,
-              status: val
-            })  
-          })
-          .catch((err) => {
-            console.log(err)
-            res.json({
-              success: false,
-              status: err
-            })
-          });         
+      if (result.success === true) {  
+        return res.json({
+          "success": true,
+        });     
       }
       else{
         console.log(err)
@@ -62,10 +45,10 @@ router.post("/login", function(req, res) {
 
     let info = {};
     console.log(req.body);
-    info.employee_code = req.body.employee_code;
+    info.username = req.body.username;
     info.password = req.body.password;
-  methods.Authentication
-    .authenticateEmployee(info)
+    methods.Authentication
+    .authenticateIncharge(info)
     .then(function(result) {
       console.log(result.success);
       if (result.success === true) {
@@ -77,7 +60,7 @@ router.post("/login", function(req, res) {
       } else {
         return res.json({
           "success": false,
-          "err":"authenticateUser method returned false"
+          "err":"authenticate User method returned false"
         });
       }
     })
@@ -88,5 +71,6 @@ router.post("/login", function(req, res) {
       });
     });
 });
+
 
 module.exports = router;

@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
           unique: 'compositeIndex',
         },
         password: {
-          type: DataTypes.STRING(40),
+          type: DataTypes.STRING(100),
           allowNull: false,
           unique: 'compositeIndex',
         },

@@ -44,7 +44,6 @@ db.Sequelize = Sequelize;
 // Import Models such that I can use them in the api just by importing 'db'
 db.users = require('./users')(sequelize, Sequelize);
 db.event = require('./event')(sequelize, Sequelize);
-db.incharge = require('./incharge')(sequelize, Sequelize);
 db.venue = require('./venue')(sequelize, Sequelize);
 db.faculty = require('./faculty')(sequelize, Sequelize);
 

@@ -52,9 +52,9 @@ function normalizePort(val) {
 
 db.sequelize.sync().then(function(){
   console.log('db synced');
-  app.listen(port, function() {
-    console.log('Express server listening on port ' );
-  });
+  // app.listen(port, function() {
+  //   console.log('Express server listening on port ' );
+  // });
 })
 .catch((err) =>{
   console.log(err);
