@@ -12,7 +12,8 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
         <script src="../javascripts/main.js"></script>
-        <script src="./../node_modules/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- <script src="./../node_modules/axios/dist/axios.min.js"></script> -->
 </head>
 
 
@@ -21,8 +22,9 @@
         <a href="/">&lt; Home</a>
     </div>
     <div class="login-page">
+        <span style="color:red; text-align:center" class="formError" id="formError"></span>
         <div class="form">
-          <input type="text" placeholder="Username" id="name" />
+          <input type="text" placeholder="Username" id="username" />
           <input type="password" placeholder="Password" id="password" />
           <button onclick="InchargeLogin()">Login</button>
         </div>

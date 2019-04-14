@@ -20,23 +20,17 @@ router.post("/register", function(req, res) {
   methods.Authentication.addIncharge(tosend)
     .then(function(result) {
       console.log("Registration started result:"+result);
-      if (result.success === true) {  
         return res.json({
-          "success": true,
-        });     
-      }
-      else{
-        console.log(err)
-
-        return res.json({
-          success: false,
-          status: result.status
-        });}
+          'success': true,
+          'data': result.data
+        })
     })
     .catch(function(err) {
+      var obj = JSON.stringify(err);
+      console.log(obj);
       return res.json({
-        success: false,
-        status: err
+        'success': false,
+        'err': err.err.errors[0].message
       });
     });
 });
@@ -54,20 +48,16 @@ router.post("/login", function(req, res) {
       if (result.success === true) {
         console.log("received token ");
         return res.json({
-          "success": true,
+          'success': true,
           jwt:result.token
         });
-      } else {
-        return res.json({
-          "success": false,
-          "err":"authenticate User method returned false"
-        });
-      }
+      } 
     })
     .catch(function(err) {
+      console.log(err);
       return res.json({
-        "success": false,
-        "error":err
+        'success': false,
+        'err':err.message
       });
     });
 });

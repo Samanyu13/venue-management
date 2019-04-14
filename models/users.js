@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
         username: {
           type: DataTypes.STRING(30),
           allowNull: false,
-          unique: 'compositeIndex',
+          unique: true,
         },
         privilege: {
           type: DataTypes.STRING(2),
@@ -24,7 +24,7 @@ module.exports = function (sequelize, DataTypes) {
         faculty_id: {
           type: DataTypes.INTEGER(),
           allowNull: true,
-          unique: 'compositeIndex',
+          unique: true,
         },
         // implement [index6 specified in db design] compositeIndex when sequelize
         // supports it.

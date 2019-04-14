@@ -24,20 +24,28 @@ Authentication.addIncharge = function(info) {
             .create(people, { transaction: t })
             .then(function(peeps) {
               console.log(peeps);
-              resolve({ success: true });
+              resolve({ 
+                'success': true,
+                'data': peeps });
             })
             .catch(function(err) {
               console.log(err);
-              reject({ success: false });
+              reject({ 
+                'success': false,
+                'err':err });
             });
         })
         .then(function(result) {
           console.log(result);
-          resolve({ success: true });
+          resolve({ 
+            'success': true ,
+            'data':result});
         })
         .catch(function(err) {
           console.log(err);
-          reject({ success: false });
+          reject({ 
+          'success': false,
+          'err':err });
         });
     });
   });
@@ -75,27 +83,42 @@ Authentication.authenticateIncharge = function(info) {
                   console.log(faculty_id);
 
                   resolve({
-                    success: true,
+                    'success': true,
                     token: token,
                   });
                 })
                 .catch(err => {
                   console.log(err);
-                  reject({ error: err });
+                  reject({ 
+                    'err': err,
+                    'success': false,
+                   });
                 });
             } 
             else {
               console.log("wrong password-bcrypt");
-              reject({ success: false, token: null });
+              reject({ 
+                'success': false, 
+                'token': null ,
+                'message': "Wrong password..!"
+              });
             }
           });
         } else {
-          reject(new Error());
+          reject({
+            'err': err,
+            'success': false,
+            'message': "Invalid username..!"
+          });
         }
       })
       .catch(err => {
         console.log(err);
-        reject(err);
+        reject({
+          'err': err,
+          'success': false,
+          'message': "Invalid username..!"
+        });
       });
   });
 };
