@@ -1,0 +1,24 @@
+{ "development": 
+    { "username": "", 
+      "password": "", 
+      "database": "venue_management", 
+      "host": "127.0.0.1", 
+      "dialect": "mysql", 
+      "operatorsAliases" : "false" 
+    }, 
+    
+    "test": 
+    { "username": "", 
+      "password": "", 
+      "database": "venue_management", 
+      "host": "127.0.0.1", 
+      "dialect": "mysql" }, 
+      
+    "production": 
+    { "username": "", 
+      "password": "", 
+      "database": "venue_management", 
+      "host": "127.0.0.1", 
+      "dialect": "mysql" 
+    } 
+}
