@@ -1,7 +1,7 @@
 const methods = {};
 
 methods.Authentication = require('./authentication');
-// methods.Event = require('./event');
+methods.Calendar = require('./calendar');
 // methods.Faculty = require('./faculty');
 // methods.Incharge = require('./incharge');
 // methods.Users = require('./users');

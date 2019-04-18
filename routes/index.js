@@ -10,6 +10,8 @@ router.get('/venue', function(req, res, next) {
   res.render('venue', { title: 'Express' });
 });
 
+router.use('/calendar', require('./calendar'));
+
 router.use('/authentication', require('./authentication'));
 
 router.use('/select_venue', require('./select_venue'));

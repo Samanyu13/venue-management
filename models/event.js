@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             unique: 'compositeIndex',
         },
-        start_time: {
+        end_time: {
             type: DataTypes.TIME(),
             allowNull: true,
             unique: 'compositeIndex',
