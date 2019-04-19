@@ -16,6 +16,11 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: false,
           unique: 'compositeIndex',
         },
+        venue_dept: {
+          type: DataTypes.STRING(6),
+          allowNull: false,
+          unique: 'compositeIndex',
+        },
         incharge_id: {
           type: DataTypes.INTEGER(),
           allowNull: false,

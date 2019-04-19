@@ -7,13 +7,22 @@ function InchargeLogin(){
     axios.post('http://localhost:3000/authentication/login',tosend)
     .then(function(result) {
         if(result.data.success==true) {
-            sessionStorage.setItem('username', result.data.username);
+            let name = result.data.username;
+            axios.get(`http://localhost:3000/private/incharge/getInchargeDetails/${name}`, {
+                withCredentials: true
+            })
+            .then((details) => {
+                sessionStorage.setItem('user_details', JSON.stringify(details.data.details));            
+                window.location.href = "/private/incharge/dashboard";
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         }
         else {
             console.log(result.data.err);
             document.getElementById('formError').innerHTML=result.data.err;
         }
-        window.location.href = "/private/incharge/dashboard.ejs";
     })
     .catch(function(err){
         console.log(err)
