@@ -44,12 +44,13 @@ router.post("/login", function(req, res) {
     methods.Authentication
     .authenticateIncharge(info)
     .then(function(result) {
-      console.log(result.success);
+      console.log(result);
       if (result.success === true) {
         console.log("received token ");
         return res.json({
           'success': true,
-          jwt:result.token
+          'jwt':result.token,
+          'username': result.username
         });
       } 
     })

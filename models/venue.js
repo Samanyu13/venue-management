@@ -11,12 +11,12 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: false,
           unique: 'compositeIndex',
         },
-        incharge_id: {
-          type: DataTypes.INTEGER(),
+        venue_type: {
+          type: DataTypes.STRING(6),
           allowNull: false,
           unique: 'compositeIndex',
         },
-        event_id: {
+        incharge_id: {
           type: DataTypes.INTEGER(),
           allowNull: false,
           unique: 'compositeIndex',
@@ -36,17 +36,5 @@ module.exports = function (sequelize, DataTypes) {
           },
         });
     };
-
-    Venue.associate = function (models) {
-        models.venue
-        .belongsTo(models.event, {
-            onDelete: 'CASCADE',
-            foreignKey: {
-              name: 'event_id',
-              // allowNull: false -- already defined
-            },
-        });
-    };
-
     return Venue;
   };

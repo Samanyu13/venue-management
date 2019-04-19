@@ -36,10 +36,25 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             unique: 'compositeIndex',
         },
+        venue_id: {
+          type: DataTypes.INTEGER(),
+          allowNull: true,
+          unique: 'compositeIndex',
+      },
         // implement [index6 specified in db design] compositeIndex when sequelize
         // supports it.
         // https://github.com/sequelize/sequelize/issues/8148
       });
   
+      Event.associate = function (models) {
+        models.event
+        .belongsTo(models.venue, {
+            onDelete: 'CASCADE',
+            foreignKey: {
+              name: 'venue_id',
+              // allowNull: false -- already defined
+            },
+        });
+      };  
     return Event;
   };

@@ -10,10 +10,9 @@ router.get('/venue', function(req, res, next) {
   res.render('venue', { title: 'Express' });
 });
 
+router.use('/private', require('./private'));
 router.use('/calendar', require('./calendar'));
-
-router.use('/authentication', require('./authentication'));
-
 router.use('/select_venue', require('./select_venue'));
+router.use('/authentication', require('./authentication'));
 
 module.exports = router;
