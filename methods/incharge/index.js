@@ -1,6 +1,6 @@
 const models = require("../../models");
 const Promise = require("bluebird");
-const { sequelize } = require("../../models");
+// const { sequelize } = require("../../models");
 
 var Incharge = {};
 
@@ -34,6 +34,7 @@ Incharge.getUserDetails = function(info) {
                     details.venue_type = ven.venue_type;
                     details.venue_dept = ven.venue_dept;
                     details.phone_no = fac.phone_no;
+                    details.venue_id = ven.venue_id;
                     resolve({
                         'success': true,
                         'details': details,
@@ -61,8 +62,29 @@ Incharge.getUserDetails = function(info) {
                 'success': false,
                 'err': err
             });
+        });
+    });
+}
+
+Incharge.addEvent = function(info) {
+    return new Promise(function(resolve, reject) {
+        models.event
+        .create(info)
+        .then((model) => {
+            console.log(model);
+            resolve({
+                'success': true,
+                'data': model
+            });
         })
-    })
+        .catch((err) => {
+            console.log(err);
+            reject({
+                'success': false,
+                'err': err
+            });
+        });
+    });
 }
 
 module.exports = Incharge;

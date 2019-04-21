@@ -16,7 +16,6 @@
     <link href= "./fullcalendar-4.0.1/packages/core/main.css" rel= "stylesheet"/>
     <link href= "./fullcalendar-4.0.1/packages/daygrid/main.css" rel= "stylesheet"/>
     <link href= "./fullcalendar-4.0.1/packages/bootstrap/main.css" rel= "stylesheet"/>
-    <!-- <script src=""></script> -->
 
 
 </head>
@@ -104,7 +103,7 @@
           },
           eventSources: [ {
           // your event source
-            url: '/calendar/load',
+            url: '/calendar/loadAll',
             method: 'POST',
             failure: function() {
               alert('there was an error while fetching events!');

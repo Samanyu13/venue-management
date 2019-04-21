@@ -16,8 +16,8 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: false,
           unique: 'compositeIndex',
         },
-        designation: {
-          type: DataTypes.STRING(5),
+        coordinator_phone: {
+          type: DataTypes.STRING(13),
           allowNull: false,
           unique: 'compositeIndex',
         },

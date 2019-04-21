@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Add Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/login.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/login.css">
+    <script src="../../javascripts/main.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
    
@@ -16,18 +17,16 @@
           <input type="text" placeholder="Event Name" id="event_name" />
           <input type="text" placeholder="Coordinator" id="coordinator" />
           <input type="date" placeholder="Date of Event" id="date" />
+          <input type="text" placeholder="Coordinator's Contact No" id="coordinator_phone" />
           <input type="time" placeholder="Start Time" id="start_time" />
           <input type="time" placeholder="End Time" id="end_time" />
-          <input type="text" placeholder="Venue Type" id="end_time" />
-          <input type="text" placeholder="Department" id="end_time" />
-          <input type="text" placeholder="Venue" id="end_time" />
-          <button onclick="InchargeRegister()">Register</button>
+          <button onclick="AddEvent()">Register</button>
         </div>
     </div>
     
 </body>
 <script>
-    dropDown('http://localhost:3000/library/ret_book', "Book No", "book_no", "bookno");
+    // dropDown('http://localhost:3000/library/ret_book', "Book No", "book_no", "bookno");
 </script>
 
 </html>
