@@ -69,3 +69,6 @@ body {
 .mainhead {
   font-size: 2em;
 }
+.row>p {
+  text-decoration: none !important;
+}
