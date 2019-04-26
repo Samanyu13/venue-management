@@ -1,16 +1,20 @@
-function dropDown(url, field, attr, id) {
-    axios.get(url, {
+function dropDown(url, field, attr, Id) {
+  var temp = localStorage.getItem('user_details');
+  var x = JSON.parse(temp);
+    axios.get(url+`/${x.venue_id}`, {
       withCredentials: true
-    }).then(function (result) {
+    })
+    .then(function (result) {
+      var data = result.data;
+      console.log(data[0][attr])
       var text = '<option value="" disabled selected>' + field + '</option>';
-      var data = result.data.classes;
       for (var i = 0; i < data.length; i++) {
         if (data[i][attr] != undefined) {
           text += "<option>" + data[i][attr] + "</option>";
         }
       }
-      var resultElement = document.getElementById(id)
-      resultElement.innerHTML = text
+      var resultElement = document.getElementById(Id);
+      resultElement.innerHTML = text;
     }).catch(function (err) {
       console.log(err);
     });

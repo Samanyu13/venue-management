@@ -18,27 +18,42 @@
     <link href= "../../fullcalendar-4.0.1/packages/bootstrap/main.css" rel= "stylesheet"/>
 </head>
 <body>
-    <div id="head"></div>
-    <div id="content_calendar">
+    <div id= "head">
+      <ul>
+        <li id="hello"></li>
+        <li style="float:right;"><a href="./authentication/login" >Logout</a></li>  
+      </ul>        
+    </div> 
+      <div id="content_calendar">
         <div id="content">
+
             <div id="add" class="card">
               <div class="card-info back">
-                <span class="about-head">Add</span><br/>
-                <span class="about">Add new events..!</span>
+                <a href="../../../private/events/add_event">
+                  <span class="about-head">Add</span><br/>
+                </a>
+                <span class="about">Add new events..!</span>             
               </div>
             </div>
+
             <div id="delete" class="card">
               <div class="card-info back">
-                <span class="about-head">Delete</span><br/>
+                <a href="../../../private/events/delete_event">
+                  <span class="about-head">Delete</span><br/>
+                </a>
                 <span class="about">Delete events..!</span>
               </div>
             </div>
-            <div id="update" class="card">
-              <div class="card-info back">
-                <span class="about-head">Edit</span><br/>
-                <span class="about">Edit current events..!</span>
+ 
+            <div id="venue" class="card">
+                <div class="card-info back">
+                  <a href="../../../private/events/delete_event">
+                    <span class="about-head">Delete</span><br/>
+                  </a>
+                  <span class="about">Delete events..!</span>
+                </div>
               </div>            
-            </div>
+
         </div>
         <div id="calendar">
 
@@ -53,7 +68,7 @@
 <script >
 
 var temp = localStorage.getItem('user_details');
-
+var x = JSON.parse(temp); 
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -66,6 +81,7 @@ var temp = localStorage.getItem('user_details');
         alert('Current view: ' + info.view.type);
         info.dayEl.style.backgroundColor = 'red';
       },
+      displayEventTime: false,
       eventSources: [ {
       // your event source
         url: '/calendar/loadUser',
@@ -82,6 +98,9 @@ var temp = localStorage.getItem('user_details');
     });
     calendar.render();      
   });
+
+
+  document.getElementById("hello").innerHTML = "Hello, "+x.username+ "..!";
 
 </script>
 

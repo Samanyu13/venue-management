@@ -182,3 +182,7 @@ img {
 .card:hover .content-overlay{
   opacity: 1;
 }
+
+a:hover {
+  text-decoration: none;
+}

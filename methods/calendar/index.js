@@ -49,7 +49,8 @@ Calendar.loadUserEvents = function(info) {
             }
             resolve({
                 success: true,
-                list: x
+                list: x,
+                all: events
             })
         })
         .catch((err) => {

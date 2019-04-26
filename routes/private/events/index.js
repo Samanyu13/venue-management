@@ -6,6 +6,14 @@ router.get('/add_event', function(req, res, next) {
     res.render('private/incharge/add_event',{ title: 'Add Event'});
 });
 
+router.get('/delete_event', function(req, res, next) {
+    res.render('private/incharge/delete_event',{ title: 'Delete Event'});
+});
+
+router.get('/edit_event', function(req, res, next) {
+    res.render('private/incharge/edit_event',{ title: 'Edit Event'});
+});
+
 router.post('/add_event', function(req, res, next) {
 
     var tosend = {};

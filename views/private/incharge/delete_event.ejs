@@ -6,6 +6,7 @@
     <title>Add Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/login.css">
+    <script src="../../javascripts/functions.js"></script>
     <script src="../../javascripts/main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -14,15 +15,15 @@
     <div class="login-page">
         <span style="color:red; text-align:center" class="formError" id="formError"></span>
         <div class="form">
-          <input type="text" placeholder="Event Name" id="event_name" />
-          <input type="text" placeholder="Coordinator" id="coordinator" />
-          <input type="date" placeholder="Date of Event" id="date" />
-          <input type="text" placeholder="Coordinator's Contact No" id="coordinator_phone" />
-          <input type="time" placeholder="Start Time" id="start_time" />
-          <input type="time" placeholder="End Time" id="end_time" />
-          <button onclick="AddEvent()">Register</button>
+          <select id="event_id" /></select>
+          <button onclick="DeleteEvent()">Delete Event</button>
         </div>
     </div>
     
 </body>
+<script>
+    dropDown(`http://localhost:3000/calendar/getUserEvents`, "Select Venue ID", "event_id", "event_id");
+    
+</script>
+
 </html>
