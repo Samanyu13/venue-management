@@ -7,17 +7,9 @@ function InchargeLogin(){
     axios.post('http://localhost:3000/authentication/login',tosend)
     .then(function(result) {
         if(result.data.success==true) {
-            let name = result.data.username;
-            axios.get(`http://localhost:3000/private/incharge/getInchargeDetails/${name}`, {
-                withCredentials: true
-            })
-            .then((details) => {
-                localStorage.setItem('user_details', JSON.stringify(details.data.details));            
-                window.location.href = "/private/incharge/dashboard";
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            console.log(result.data.data)
+            localStorage.setItem('user_details', JSON.stringify(result.data.data)); 
+            window.location.href = "/private/incharge/dashboard";
         }
         else {
             console.log(result.data.err);

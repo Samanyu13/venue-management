@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 const methods = require("../../methods");
 
+
 router.get('/login', function(req, res, next) {
+  if(req.session.token){
+    res.redirect('/private/incharge/dashboard')
+  }
   res.render('authentication/login', { title: 'Express' });
 });
 
@@ -35,8 +39,9 @@ router.post("/register", function(req, res) {
     });
 });
 
-router.post("/login", function(req, res) {
 
+router.post("/login",function(req, res) {
+    
     let info = {};
     console.log(req.body);
     info.username = req.body.username;
@@ -47,11 +52,21 @@ router.post("/login", function(req, res) {
       console.log(result);
       if (result.success === true) {
         console.log("received token ");
-        return res.json({
-          'success': true,
-          'jwt':result.token,
-          'username': result.username
-        });
+        req.session.token=result.token
+        methods.Incharge.getUserDetails(info.username)
+        .then(function(data){
+          return res.json({
+            'success': true,
+            'data': data.details
+          });
+        })
+        .catch(function(err){
+          console.log(err);
+          return res.json({
+           'success': false,
+           'err':err.message
+           });
+        })
       } 
     })
     .catch(function(err) {
@@ -62,6 +77,13 @@ router.post("/login", function(req, res) {
       });
     });
 });
+
+router.get("/logout", function(req,res){
+  req.session.destroy(function(){
+    console.log("User logged out")
+    res.redirect('/')
+  })
+})
 
 
 module.exports = router;

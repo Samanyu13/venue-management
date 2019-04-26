@@ -19,3 +19,7 @@ function dropDown(url, field, attr, Id) {
       console.log(err);
     });
   }
+
+function logOut(){
+  localStorage.removeItem("user_details");
+}
