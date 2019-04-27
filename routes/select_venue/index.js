@@ -6,7 +6,7 @@ router.get('/classes', function(req, res, next) {
   res.render('select_venue/classes', { title: 'Classes' });
 });
 
-router.get('/classes/:name', function(req, res, next) {
+router.get('/classes/:ven_code', function(req, res, next) {
   res.render('venue', { title: 'Venue'});
 });
 

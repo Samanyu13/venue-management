@@ -85,7 +85,8 @@ Authentication.authenticateIncharge = function(info) {
                   resolve({
                     'success': true,
                     'token': token,
-                    'username': info.username
+                    'username': info.username,
+                    'privilege': info.privilege
                   });
                 })
                 .catch(err => {

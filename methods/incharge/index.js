@@ -32,7 +32,7 @@ Incharge.getUserDetails = function(info) {
                     details.privilege = result.privilege;
                     details.venue = ven.venue_name;
                     details.venue_type = ven.venue_type;
-                    details.venue_dept = ven.venue_dept;
+                    details.venue_code = ven.venue_code;
                     details.phone_no = fac.phone_no;
                     details.venue_id = ven.venue_id;
                     resolve({

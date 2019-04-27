@@ -32,6 +32,21 @@ router.post('/loadUser',function(req, res, next) {
     });
 })
 
+router.post('/loadForVenue',function(req, res, next) {
+    var x = JSON.parse(req.body.user);
+    methods.Calendar.loadUserEvents(x.venue_id)
+    .then((events) => {
+        return res.json(events.list);
+    })
+    .catch((err) => {
+        console.log(err);
+        return res.json({
+            success: false,
+            err: err
+        }); 
+    });
+})
+
 router.get('/getUserEvents/:info',function(req, res, next) {
     var x = req.params.info;
     console.log(x)

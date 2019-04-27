@@ -16,10 +16,10 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: false,
           unique: 'compositeIndex',
         },
-        venue_dept: {
+        venue_code: {
           type: DataTypes.STRING(6),
           allowNull: false,
-          unique: 'compositeIndex',
+          unique: true,
         },
         incharge_id: {
           type: DataTypes.INTEGER(),
