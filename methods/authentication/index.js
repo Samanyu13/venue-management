@@ -20,13 +20,34 @@ Authentication.addIncharge = function(info) {
           people.privilege = info.privilege;
           people.password = hash;
 
-          return models.users
-            .create(people, { transaction: t })
+          models.venue.findOne({
+            where: {
+              venue_code: info.venue_code
+            }
+          })
+          .then((venue) => {
+            return models.users.create(people, { transaction: t })
             .then(function(peeps) {
-              console.log(peeps);
-              resolve({ 
-                'success': true,
-                'data': peeps });
+              console.log(peeps+"123456789012345678901234567890123456789012345678901234567890");
+              models.venue.update({
+                incharge_id: peeps.user_id
+              },
+              {
+                where: venue.venue_code
+              })
+              .then((x) => {
+                resolve({ 
+                  'success': true,
+                  'data': peeps 
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+                reject({
+                  'success': false,
+                  'err': "Error in updating venue table"
+                })
+              })
             })
             .catch(function(err) {
               console.log(err);
@@ -34,12 +55,21 @@ Authentication.addIncharge = function(info) {
                 'success': false,
                 'err':err });
             });
+          })
+          .catch((err) => {
+            console.log(err);
+            reject({
+              'success': false,
+              'err': "Invalid venue code..!"
+            });
+          });
         })
         .then(function(result) {
           console.log(result);
           resolve({ 
             'success': true ,
-            'data':result});
+            'data':result
+          });
         })
         .catch(function(err) {
           console.log(err);
@@ -64,38 +94,36 @@ Authentication.authenticateIncharge = function(info) {
           bcrypt.compare(info.password, result.password, function(err, res) {
             if (res === true) {
               console.log("correct password-bcrypt");
-              models.faculty
-                .findOne({
-                  where: {
+              models.faculty.findOne({
+                where: {
                     faculty_id: result.faculty_id
-                  }
-                })
-                .then(success => {
-                  const token = jwt.sign(
-                    {
-                      faculty_id: result.faculty_id,
-                      username: success.username
-                    },
-                    key,
-                    { expiresIn: "4h" }
-                  );
-                  const faculty_id = result.faculty_id;
-                  console.log(faculty_id);
-
-                  resolve({
-                    'success': true,
-                    'token': token,
-                    'username': info.username,
-                    'privilege': info.privilege
-                  });
-                })
-                .catch(err => {
-                  console.log(err);
-                  reject({ 
-                    'err': err,
-                    'success': false,
-                   });
+                }
+              })
+              .then(success => {
+                const token = jwt.sign(
+                  {
+                    faculty_id: result.faculty_id,
+                    username: success.username
+                  },
+                  key,
+                  { expiresIn: "4h" }
+                );
+                const faculty_id = result.faculty_id;
+                console.log(faculty_id);
+                resolve({
+                  'success': true,
+                  'token': token,
+                  'username': info.username,
+                  'privilege': result.privilege
                 });
+              })
+              .catch(err => {
+                console.log(err);
+                reject({ 
+                  'err': err,
+                  'success': false,
+                });
+              });
             } 
             else {
               console.log("wrong password-bcrypt");

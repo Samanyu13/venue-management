@@ -8,8 +8,13 @@ function InchargeLogin(){
     .then(function(result) {
         if(result.data.success==true) {
             console.log(result.data.data)
+            if(result.data.data.privilege == "X") {
+                window.location.href = "/private/admin/dashboard";
+            }
+            else if(result.data.data.privilege == "Z") {
+                window.location.href = "/private/incharge/dashboard";
+            }
             localStorage.setItem('user_details', JSON.stringify(result.data.data)); 
-            window.location.href = "/private/incharge/dashboard";
         }
         else {
             console.log(result.data.err);
@@ -26,22 +31,23 @@ function InchargeRegister() {
     var faculty_id = document.getElementById('faculty_id').value;
     var password = document.getElementById('password').value;
     var privilege = document.getElementById('privilege').value;
+    var venue_code = document.getElementById('venue_code').value;
     var tosend = {};
     tosend.username = username;
     tosend.faculty_id = faculty_id;
     tosend.password = password;
     tosend.privilege = privilege;
-    
+    tosend.venue_code = venue_code;
     axios.post('http://localhost:3000/authentication/register', tosend)
     .then(function(result) {
         if(result.data.success == true) {
             console.log(result.data.data);
+            window.location.href = "../../../";
         }
         else{
             console.log(result.data.err);
             document.getElementById('formError').innerHTML=result.data.err;
         }
-        window.location.href = "../";
     })
     .catch(function(err){
         console.log(err)

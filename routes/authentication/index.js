@@ -4,7 +4,12 @@ const methods = require("../../methods");
 
 
 router.get('/login', function(req, res, next) {
-  if(req.session.token){
+  if(req.session.token) {
+
+    if(req.session.privilege == "X") {
+      res.redirect('/private/admin/dashboard');
+    }
+    else if(req.session.privilege == "Z")
     res.redirect('/private/incharge/dashboard')
   }
   res.render('authentication/login', { title: 'Express' });
@@ -20,6 +25,7 @@ router.post("/register", function(req, res) {
   tosend.faculty_id = req.body.faculty_id;
   tosend.password = req.body.password;
   tosend.privilege = req.body.privilege;
+  tosend.venue_code = req.body.venue_code;
 
   methods.Authentication.addIncharge(tosend)
     .then(function(result) {
@@ -52,12 +58,14 @@ router.post("/login",function(req, res) {
       console.log(result);
       if (result.success === true) {
         console.log("received token ");
-        req.session.token=result.token
+        req.session.token=result.token;
+        req.session.privilege = result.privilege;
         methods.Incharge.getUserDetails(info.username)
         .then(function(data){
           return res.json({
             'success': true,
-            'data': data.details
+            'data': data.details,
+            'privilege': result.privilege
           });
         })
         .catch(function(err){

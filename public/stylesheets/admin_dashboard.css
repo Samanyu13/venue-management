@@ -24,23 +24,28 @@ body {
 #content {
     grid-column: 1/2;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-gap: 2rem;
 }
 
-#add {
+#i_add {
     grid-row: 1/2;
-  background-color: #22bdec;
+  background-color: #6dd4f3;
 }
 
-#delete {
+#i_delete {
     grid-row: 2/3;
-    background-color: rgb(42, 115, 175);
+    background-color: rgb(71, 152, 218);
 }
 
-#venue {
+#v_add {
     grid-row: 3/4;
-    background-color: rgb(25, 69, 104);
+    background-color: rgb(48, 126, 190);
+}
+
+#v_delete {
+    grid-row: 4/5;
+    background-color: rgb(33, 86, 126);
 }
 
 #calendar {
@@ -106,5 +111,5 @@ ul {
   }
 
   a:link {
-    text-decoration: none!important;
+      text-decoration: none!important;
   }

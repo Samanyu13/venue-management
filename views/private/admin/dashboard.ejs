@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/dashboard.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/admin_dashboard.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -29,32 +29,41 @@
       <div id="content_calendar">
         <div id="content">
 
-            <div id="add" class="card">
+            <div id="i_add" class="card">
               <div class="card-info back">
-                <a href="../../../private/events/add_event">
-                  <span class="about-head">Add</span><br/>
+                <a href="../../../private/admin/incharge/addIncharge">
+                  <span class="about-head">Add Incharge</span><br/>
                 </a>
-                <span class="about">Add new events..!</span>             
+                <span class="about">Add a new incharge..!</span>             
               </div>
             </div>
 
-            <div id="delete" class="card">
+            <div id="i_delete" class="card">
               <div class="card-info back">
-                <a href="../../../private/events/delete_event">
-                  <span class="about-head">Delete</span><br/>
+                <a href="../../../private/admin/incharge/removeIncharge">
+                  <span class="about-head">Delete Incharge</span><br/>
                 </a>
-                <span class="about">Delete events..!</span>
+                <span class="about">Delete an existing incharge..!</span>
               </div>
             </div>
  
-            <div id="venue" class="card">
-                <div class="card-info back">
-                  <a href="../../../private/events/delete_event">
-                    <span class="about-head">Delete</span><br/>
-                  </a>
-                  <span class="about">Delete events..!</span>
-                </div>
-              </div>            
+            <div id="v_add" class="card">
+              <div class="card-info back">
+                <a href="../../../private/admin/venue/addVenue">
+                  <span class="about-head">Add Venue</span><br/>
+                </a>
+                  <span class="about">Delete a new venue..!</span>
+              </div>
+            </div>   
+            
+            <div id="v_delete" class="card">
+              <div class="card-info back">
+                <a href="../../../private/admin/venue/removeVenue">
+                  <span class="about-head">Delete Venue</span><br/>
+                </a>
+                  <span class="about">Delete an existing venue..!</span>
+              </div>
+            </div> 
 
         </div>
         <div id="calendar">
@@ -77,16 +86,10 @@ var x = JSON.parse(temp);
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'dayGrid', 'bootstrap', 'interaction' ],
       themeSystem: 'bootstrap',
-      dateClick : function(info) {  
-        alert('Clicked on: ' + info.dateStr);
-        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-        alert('Current view: ' + info.view.type);
-        info.dayEl.style.backgroundColor = 'red';
-      },
       displayEventTime: false,
       eventSources: [ {
       // your event source
-        url: '/calendar/loadUser',
+        url: '/calendar/loadAll',
         method: 'POST',
         extraParams: {
         user: temp
