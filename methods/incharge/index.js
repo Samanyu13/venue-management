@@ -28,13 +28,15 @@ Incharge.getUserDetails = function(info) {
                     }
                 })
                 .then((ven) => {
+                    if(ven != null) {
+                        details.venue = ven.venue_name;
+                        details.venue_type = ven.venue_type;
+                        details.venue_code = ven.venue_code;
+                        details.venue_id = ven.venue_id;
+                    }
                     details.username = result.username;
                     details.privilege = result.privilege;
-                    details.venue = ven.venue_name;
-                    details.venue_type = ven.venue_type;
-                    details.venue_code = ven.venue_code;
                     details.phone_no = fac.phone_no;
-                    details.venue_id = ven.venue_id;
                     resolve({
                         'success': true,
                         'details': details,

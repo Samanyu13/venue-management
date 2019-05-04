@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const methods = require("../../methods");
 
-
+//get login page
 router.get('/login', function(req, res, next) {
   if(req.session.token) {
 
@@ -15,37 +15,84 @@ router.get('/login', function(req, res, next) {
   res.render('authentication/login', { title: 'Express' });
 });
 
+//get register page 
 router.get('/register', function(req, res, next) {
   res.render('authentication/register', { title: 'Express' });
 });
 
+//logout
+router.get("/logout", function(req,res){
+  req.session.destroy(function(){
+    console.log("User logged out")
+    res.redirect('/')
+  })
+})
+
+//process register data
 router.post("/register", function(req, res) {
   let tosend = {};
+  let x = {};
   tosend.username = req.body.username;
   tosend.faculty_id = req.body.faculty_id;
   tosend.password = req.body.password;
   tosend.privilege = req.body.privilege;
-  tosend.venue_code = req.body.venue_code;
+  code = req.body.venue_code;
 
-  methods.Authentication.addIncharge(tosend)
-    .then(function(result) {
-      console.log("Registration started result:"+result);
-        return res.json({
-          'success': true,
-          'data': result.data
-        })
-    })
-    .catch(function(err) {
-      var obj = JSON.stringify(err);
-      console.log(obj);
+  methods.Venue.getVenueByCode(code)
+  .then((venue) => {
+    if(venue.count <= 0) {
       return res.json({
         'success': false,
-        'err': err.err.errors[0].message
-      });
+        'err': 'No such venue found..!'
+      })
+    }
+    else {
+
+      x.user_id = venue.data[0].user_id;
+      x.venue_name = venue.data[0].venue_name;  
+      x.venue_type = venue.data[0].venue_type;
+      x.venue_code = venue.data[0].venue_code;
+      // x.incharge_id = data[0].incharge_id;
+
+      methods.Authentication.addIncharge(tosend)
+      .then(function(result) {
+        var code = x.venue_code;
+        x.incharge_id = result.data.user_id; 
+
+        methods.Venue.updateVenueByCode(code, x)
+        .then((updated) => {
+          console.log("Registration started result:"+result);
+          return res.json({
+            'success': true,
+            'data': result.data
+          });          
+        })
+        .catch((err) => {
+          return res.json({
+            'success': false,
+            'err': err
+          });
+        });
+      })
+      .catch(function(err) {
+        var obj = JSON.stringify(err);
+        console.log(obj);
+        return res.json({
+          'success': false,
+          'err': err.err.errors[0].message
+        });
+      }); 
+    }     
+  })
+  .catch(function(err) {
+    return res.json({
+      'success': false,
+      'err': err.message
     });
+  }); 
 });
 
-
+//process login data
 router.post("/login",function(req, res) {
     
     let info = {};
@@ -85,13 +132,6 @@ router.post("/login",function(req, res) {
       });
     });
 });
-
-router.get("/logout", function(req,res){
-  req.session.destroy(function(){
-    console.log("User logged out")
-    res.redirect('/')
-  })
-})
 
 
 module.exports = router;

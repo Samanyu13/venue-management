@@ -23,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         incharge_id: {
           type: DataTypes.INTEGER(),
-          allowNull: false,
+          allowNull: true,
           unique: 'compositeIndex',
         },
         // implement [index6 specified in db design] compositeIndex when sequelize

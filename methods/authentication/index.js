@@ -20,48 +20,18 @@ Authentication.addIncharge = function(info) {
           people.privilege = info.privilege;
           people.password = hash;
 
-          models.venue.findOne({
-            where: {
-              venue_code: info.venue_code
-            }
-          })
-          .then((venue) => {
-            return models.users.create(people, { transaction: t })
-            .then(function(peeps) {
-              console.log(peeps+"123456789012345678901234567890123456789012345678901234567890");
-              models.venue.update({
-                incharge_id: peeps.user_id
-              },
-              {
-                where: venue.venue_code
-              })
-              .then((x) => {
-                resolve({ 
-                  'success': true,
-                  'data': peeps 
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-                reject({
-                  'success': false,
-                  'err': "Error in updating venue table"
-                })
-              })
-            })
-            .catch(function(err) {
-              console.log(err);
-              reject({ 
-                'success': false,
-                'err':err });
+          return models.users.create(people, { transaction: t })
+          .then(function(peeps) {
+            resolve({ 
+              'success': true,
+              'data': peeps 
             });
           })
-          .catch((err) => {
+          .catch(function(err) {
             console.log(err);
-            reject({
+            reject({ 
               'success': false,
-              'err': "Invalid venue code..!"
-            });
+              'err':err });
           });
         })
         .then(function(result) {
@@ -80,6 +50,7 @@ Authentication.addIncharge = function(info) {
     });
   });
 };
+
 
 Authentication.authenticateIncharge = function(info) {
   return new Promise(function(resolve, reject) {
