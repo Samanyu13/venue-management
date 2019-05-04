@@ -81,3 +81,53 @@ function AddEvent() {
         console.log(err);
     });
 }
+
+function removeIncharge() {
+    var username = document.getElementById('username').value;
+    var tosend = {};
+    tosend.username = username;
+
+    axios.post('http://localhost:3000/private/admin/incharge/removeIncharge', tosend)
+    .then(function(result) {
+        window.location.href = "/private/admin/dashboard";
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
+function removeVenue() {
+    var venue_code = document.getElementById('venue_code').value;
+    var tosend = {};
+    tosend.venue_code = venue_code;
+
+    axios.post('http://localhost:3000/private/admin/venue/removeVenue', tosend)
+    .then(function(result) {
+        window.location.href = "/private/admin/dashboard";
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
+function AddVenue() {
+    var venue_name = document.getElementById('venue_name').value;
+    var venue_type = document.getElementById('coordinator').value;
+    var venue_code = document.getElementById('date').value;
+    var incharge_id = document.getElementById('incharge_id').value;
+
+    var tosend = {};
+    tosend.venue_name = venue_name;
+    tosend.venue_type = venue_type;
+    tosend.venue_code = venue_code;
+    tosend.incharge_id = incharge_id;
+
+
+    axios.post('http://localhost:3000/private/admin/venue/addVenue', tosend)
+    .then(function(result) {
+        window.location.href = "/private/admin/dashboard";
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+}

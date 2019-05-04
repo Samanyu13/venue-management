@@ -10,4 +10,23 @@ router.get('/removeIncharge', function(req, res, next) {
     res.render('private/admin/remove_incharge', {title: 'Remove Incharge'});
 });
 
+router.post('/removeIncharge', function(req, res, next) {
+
+    var info = req.body.username;
+
+    methods.Admin.removeIncharge(info)
+    .then(result => {
+        return res.json({
+            'success': true,
+            'data': result.data
+        });
+    })
+    .catch(err => {
+        return res.json({
+            'success': false,
+            'err': err
+        });    
+    });
+});
+
 module.exports = router;

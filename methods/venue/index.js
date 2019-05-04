@@ -1,6 +1,5 @@
 const models = require("../../models");
 const Promise = require("bluebird");
-// const { sequelize } = require("../../models");
 
 var Venue = {};
 
@@ -48,5 +47,50 @@ Venue.updateVenueByCode = function(info,data) {
         })
     })
 }
+
+Venue.removeVenue = function(info) {
+    return new Promise(function(resolve, reject) {
+        models.venue.destroy({
+            where: {
+                venue_code: info
+            }
+        })
+        .then((deleted) => {
+            if(deleted === 0) {
+                reject(new Error());
+            }
+            else {
+                resolve({
+                    'success': true,
+                    'data': deleted
+                });
+            }
+        })
+        .catch((err) => {
+            reject({
+                'success': false,
+                'message': "Error"
+            });
+        });
+    });
+};
+
+Venue.addVenue = function(info) {
+    return new Promise(function(resolve, reject) {
+        models.venue.create(info)
+        .then(model => {
+            resolve({
+                'success': true,
+                'data': model
+            });
+        })
+        .catch(err => {
+            reject({
+                'success': false,
+                'err': err
+            });        
+        });
+    });
+};
 
 module.exports = Venue;
