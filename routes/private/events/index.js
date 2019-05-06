@@ -10,8 +10,8 @@ router.get('/delete_event', function(req, res, next) {
     res.render('private/incharge/delete_event',{ title: 'Delete Event'});
 });
 
-router.get('/edit_event', function(req, res, next) {
-    res.render('private/incharge/edit_event',{ title: 'Edit Event'});
+router.get('/display_events', function(req, res, next) {
+    res.render('private/incharge/display_events',{ title: 'Display Events'});
 });
 
 router.post('/add_event', function(req, res, next) {
@@ -40,5 +40,22 @@ router.post('/add_event', function(req, res, next) {
         });
     });
 });
+
+router.get('/getEventsByID/:venue_id', function(req, res, next) {
+    var v_id = req.params.venue_id;
+    methods.Events.getEventsByID(v_id)
+    .then(val => {
+        return res.json({
+            'success': true,
+            'data': val.data
+        });
+    })
+    .catch(err => {
+        return res.json({
+            'success': false,
+            'err': "Error"
+        });
+    });
+})
 
 module.exports = router;

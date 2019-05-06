@@ -110,11 +110,16 @@ function removeVenue() {
     });
 }
 
-function AddVenue() {
+function addVenue() {
     var venue_name = document.getElementById('venue_name').value;
-    var venue_type = document.getElementById('coordinator').value;
-    var venue_code = document.getElementById('date').value;
-    var incharge_id = document.getElementById('incharge_id').value;
+    var venue_type = document.getElementById('venue_type').value;
+    var venue_code = document.getElementById('venue_code').value;
+    if(document.getElementById('incharge_id').value != null ) {
+        var incharge_id = document.getElementById('incharge_id').value;
+    }
+    else {
+        incharge_id = null;
+    }
 
     var tosend = {};
     tosend.venue_name = venue_name;
