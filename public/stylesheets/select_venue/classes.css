@@ -68,6 +68,7 @@ body {
 
 .mainhead {
   font-size: 2em;
+  text-align: center;
 }
 .row>p {
   text-decoration: none !important;

@@ -136,3 +136,18 @@ function addVenue() {
         console.log(err);
     });
 }
+
+function deleteEvent() {
+    var venue_id = document.getElementById('event_id').value;
+
+    var tosend = {};
+    tosend.venue_id = venue_id;
+
+    axios.post('http://localhost:3000/private/events/delete_event', tosend)
+    .then(result => {
+        window.location.href = "/private/incharge/dashboard";
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

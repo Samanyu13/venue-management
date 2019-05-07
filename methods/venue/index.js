@@ -26,6 +26,75 @@ Venue.getVenueByCode = function(info) {
     })
 }
 
+Venue.getVenues_EventsByCode = function(code) {
+    return new Promise(function(resolve, reject) {
+        models.venue.findOne({
+            where: {
+                venue_code: code
+            }
+        })
+        .then(ven => {
+            console.log(JSON.stringify(ven));
+            if(ven == null) {
+                resolve({
+                    'success': false,
+                    'err':"Not_found"
+                });
+            }
+            else {
+                if(ven.incharge_id != null) {
+                    models.users.findOne({
+                        where: {
+                            user_id: ven.incharge_id
+                        }
+                    })
+                    .then(user => {
+                        console.log(JSON.stringify(user));
+                        models.faculty.findOne({
+                            where: {
+                                faculty_id: user.faculty_id
+                            }
+                        })
+                        .then(fac => {
+                            var data = {};
+                            data.venue_code = ven.venue_code;
+                            data.venue_name = ven.venue_name;
+                            data.venue_type = ven.venue_type;
+                            data.name = fac.name;
+                            dataphone_no = fac.phone_no;
+                            resolve({
+                                'success': true,
+                                'data': data
+                            });
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    });
+                }
+                else {
+                    var data = {};
+                    data.venue_code = ven.venue_code;
+                    data.venue_name = ven.venue_name;
+                    data.venue_type = ven.venue_type;
+                    data.name = "Nil";
+                    data.phone_no = "-";
+                    resolve({
+                        'success': true,
+                        'data': data
+                    });
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        });
+    });
+};
+
 Venue.updateVenueByCode = function(info,data) {
     return new Promise(function(resolve, reject) {
         models.venue.update(data,{

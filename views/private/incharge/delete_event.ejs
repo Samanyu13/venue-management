@@ -16,14 +16,14 @@
         <span style="color:red; text-align:center" class="formError" id="formError"></span>
         <div class="form">
           <select id="event_id" /></select>
-          <button onclick="DeleteEvent()">Delete Event</button>
+          <button onclick="deleteEvent()">Delete Event</button>
         </div>
     </div>
     
 </body>
 
 <script>
-    dropDown(`http://localhost:3000/calendar/getUserEvents`, "Select Venue ID", "event_id", "event_id");  
+    dropDown(`http://localhost:3000/calendar/getUserEvents`, "Select Event ID", "event_id", "event_id");  
 </script>
 
 </html>

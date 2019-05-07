@@ -56,6 +56,24 @@ router.get('/getEventsByID/:venue_id', function(req, res, next) {
             'err': "Error"
         });
     });
-})
+});
+
+router.post('/delete_event', function(req, res, next) {
+
+    var info = req.body.venue_id;
+    methods.Events.deleteEvent(info)
+    .then(val => {
+        return res.json({
+            'success': true,
+            'data': val.data
+        });
+    })
+    .catch(err => {
+        return res.json({
+            'success': false,
+            'err': err
+        });
+    });
+});
 
 module.exports = router;

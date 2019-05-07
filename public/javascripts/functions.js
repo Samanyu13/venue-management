@@ -20,10 +20,6 @@ function dropDown(url, field, attr, Id) {
     });
   }
 
-function logOut(){
-  localStorage.removeItem("user_details");
-}
-
 function formatDate(date) {
   d = new Date(date);
 
@@ -61,4 +57,17 @@ function getEvents() {
   .catch(function (err) {
     console.log(err)
   });
+}
+
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function logOut(){
+  localStorage.removeItem("user_details");
+  var x = document.getElementById("snackbar");
+  x.innerHTML = "Successfully logged out..!";
+  myFunction();
 }

@@ -25,4 +25,27 @@ Events.getEventsByID = function(info) {
     });
 };
 
+Events.deleteEvent = function(info) {
+    return new Promise(function(resolve, reject) {
+        models.event.destroy({
+            where: {
+                event_id: info
+            }
+        })
+        .then(model => {
+            console.log(model);
+            resolve({
+                'success': true,
+                'data': model
+            });
+        })
+        .catch(err => {
+            reject({
+                'success': false,
+                'err': err
+            });
+        });
+    });
+};
+
 module.exports = Events;

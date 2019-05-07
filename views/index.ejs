@@ -6,6 +6,8 @@
     <title>V-Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/toast.css" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -17,6 +19,7 @@
     <link href= "./fullcalendar-4.0.1/packages/daygrid/main.css" rel= "stylesheet"/>
     <link href= "./fullcalendar-4.0.1/packages/bootstrap/main.css" rel= "stylesheet"/>
 
+  <script src="./javascripts/functions.js"></script>
 
 </head>
 
@@ -26,7 +29,7 @@
     <div id= "head">
 <ul>
     <li>V-Manager</li>    <li style="float:right;"><a href="./authentication/login" >Login</a></li>
-
+    <p id="snackbar"></p>
 </ul>        
     </div> 
 
@@ -76,8 +79,6 @@
                 </div>
               </div>
         </div>
-        
-
         <div id= "calendar">
 
         </div>
@@ -95,12 +96,12 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
           plugins: [ 'dayGrid', 'bootstrap', 'interaction' ],
           themeSystem: 'bootstrap',
-          dateClick : function(info) {  
-            alert('Clicked on: ' + info.dateStr);
-            alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            alert('Current view: ' + info.view.type);
-            info.dayEl.style.backgroundColor = 'red';
-          },
+          // dateClick : function(info) {  
+          //   alert('Clicked on: ' + info.dateStr);
+          //   alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+          //   alert('Current view: ' + info.view.type);
+          //   info.dayEl.style.backgroundColor = 'red';
+          // },
           eventSources: [ {
           // your event source
             url: '/calendar/loadAll',
