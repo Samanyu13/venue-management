@@ -72,14 +72,21 @@ function AddEvent() {
     tosend.start_time = start_time;
     tosend.end_time = end_time;
     tosend.venue_id = val.venue_id;
-
-    axios.post('http://localhost:3000/private/events/add_event',tosend)
-    .then(function(result) {
-        window.location.href = "/private/incharge/dashboard";
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
+    
+    var tdate = new Date();
+    if (tdate > date) {
+        console.log(tdate+"drfeeds234543");
+        document.getElementById('formError').innerHTML="Oops!....This day has already passed :(";
+    }
+    else {
+        axios.post('http://localhost:3000/private/events/add_event',tosend)
+        .then(function(result) {
+            window.location.href = "/private/incharge/dashboard";
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+    }   
 }
 
 function removeIncharge() {

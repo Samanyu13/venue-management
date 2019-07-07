@@ -31,21 +31,25 @@ body {
 #i_add {
     grid-row: 1/2;
   background-color: #6dd4f3;
+  text-align: center;
 }
 
 #i_delete {
     grid-row: 2/3;
     background-color: rgb(71, 152, 218);
+    text-align: center;
 }
 
 #v_add {
     grid-row: 3/4;
     background-color: rgb(48, 126, 190);
+    text-align: center;
 }
 
 #v_delete {
     grid-row: 4/5;
     background-color: rgb(33, 86, 126);
+    text-align: center;
 }
 
 #calendar {
@@ -71,13 +75,12 @@ body {
 }
 
 .about-head {
-    color: #ffffff;
-    text-align: center;
+    color: #351818;
     font-size: 3rem;
 }
 
 .about {
-    color: #cac4c4;   
+    color: #361c1c;   
     font-size: 2rem;
 }
 

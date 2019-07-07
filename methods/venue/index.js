@@ -61,7 +61,7 @@ Venue.getVenues_EventsByCode = function(code) {
                             data.venue_name = ven.venue_name;
                             data.venue_type = ven.venue_type;
                             data.name = fac.name;
-                            dataphone_no = fac.phone_no;
+                            data.phone_no = fac.phone_no;
                             resolve({
                                 'success': true,
                                 'data': data

@@ -29,18 +29,21 @@ body {
 }
 
 #add {
-    grid-row: 1/2;
+  grid-row: 1/2;
   background-color: #22bdec;
+  text-align: center;
 }
 
 #delete {
     grid-row: 2/3;
     background-color: rgb(42, 115, 175);
+    text-align: center;
 }
 
 #venue {
     grid-row: 3/4;
     background-color: rgb(25, 69, 104);
+    text-align: center;
 }
 
 #calendar {
@@ -66,13 +69,13 @@ body {
 }
 
 .about-head {
-    color: #ffffff;
+    color: #351818;
     text-align: center;
     font-size: 3rem;
 }
 
 .about {
-    color: #cac4c4;   
+    color: #351818;   
     font-size: 2rem;
 }
 
